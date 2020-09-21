@@ -1,0 +1,3 @@
+export const FETCH_ALL_BREEDS = 'FETCH_ALL_BREEDS';
+export const PICK_10_BREEDS = 'PICK_10_BREEDS';
+export const GET_BREED_IMAGES = 'GET_BREED_IMAGES';
