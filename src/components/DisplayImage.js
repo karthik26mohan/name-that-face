@@ -8,6 +8,12 @@ class DisplayImage extends React.Component {
         this.props.getBreedImages(this.props.breedUrl);
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.breedUrl !== this.props.breedUrl) {
+            this.props.getBreedImages(this.props.breedUrl);
+        }
+    }
+
     render() {
         if(this.props.breedImages) {
             return (<img src={this.props.breedImages[0]}></img>);

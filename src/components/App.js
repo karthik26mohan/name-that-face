@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchAllBreeds, getBreedImages } from '../actions';
+import { fetchAllBreeds, getBreedImages, increaseQuizStep } from '../actions';
 import DisplayImage from './DisplayImage';
 import DisplayOptions from './DisplayOptions';
 
@@ -33,6 +33,10 @@ class App extends React.Component {
         return 'blah';
     }
 
+    onNextButtonClick() {
+        this.props.increaseQuizStep();
+    }
+
     render() {
         return (
             <div>
@@ -53,8 +57,7 @@ class App extends React.Component {
                     </div>
                 </div>
                 <div>
-                    <button class="ui button">Follow</button>
-                    <button class="ui button">Follow</button>
+                    <button className="ui button blue" onClick={e => this.onNextButtonClick()}>Next</button>
                 </div>
             </div>
         );
@@ -72,4 +75,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchAllBreeds, getBreedImages })(App);
+export default connect(mapStateToProps, { fetchAllBreeds, getBreedImages, increaseQuizStep })(App);

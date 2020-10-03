@@ -6,7 +6,12 @@ class DisplayOptions extends React.Component {
 
     componentDidMount() {
         this.props.get4Options(this.props.currentStep);
-        console.log(this.props);
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.currentStep !== this.props.currentStep) {
+            this.props.get4Options(this.props.currentStep);
+        }
     }
 
     renderOptions() {

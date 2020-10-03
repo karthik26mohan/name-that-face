@@ -31,3 +31,9 @@ export const get4Options = (currentStep) => {
         payload: currentStep
     }
 }
+
+export const increaseQuizStep = () => {
+    return {
+        type: INCREASE_QUIZ_STEP
+    }
+}
