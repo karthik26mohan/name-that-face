@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAllBreeds, getBreedImages } from '../actions';
-import DisplayCard from './DisplayCard';
+import DisplayImage from './DisplayImage';
 
 class App extends React.Component {
 
     componentDidMount() {
         this.props.fetchAllBreeds();
+    }
+
+    renderImages(images) {
+        return (
+            <img src={images[0]}></img>
+        )
     }
     
     renderImage() {
@@ -18,8 +24,9 @@ class App extends React.Component {
             if(this.props.tenBreeds[breedKeys[0]].length>0){
                 breedStr += '/' + this.props.tenBreeds[breedKeys[0]][0];
             }
-            const images = this.props.getBreedImages(breedStr);
-            return '';
+            return (
+                <DisplayImage breedUrl={breedStr}/>
+            );
         }
         return 'blah';
     }
@@ -31,7 +38,7 @@ class App extends React.Component {
                     <div className="side active">
                         <div className="ui card">
                             <div className="image">
-                                <img src={this.renderImage()} />
+                                {this.renderImage()}
                             </div>
                             <div className="content">
                                 <div className="header">Steve Jobes</div>
@@ -86,6 +93,7 @@ const mapStateToProps = (state) => {
     console.log(state);
     return {
         tenBreeds: state.dogState.tenBreeds,
+        breedImages: []
         // images: this.state.
     }
 }

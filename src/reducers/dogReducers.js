@@ -14,7 +14,7 @@ export default (state = {}, action) => {
             const tenBreeds = pick10Breeds(state.dogBreeds);
             return { ...state, tenBreeds: tenBreeds };
         case GET_BREED_IMAGES:
-            console.log(action.payload);
+            return { ...state, breedImages: action.payload };
         default:
             return state;
     }
