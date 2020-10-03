@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchAllBreeds, getBreedImages } from '../actions';
+import { getBreedImages } from '../actions';
 
 class DisplayImage extends React.Component {
 

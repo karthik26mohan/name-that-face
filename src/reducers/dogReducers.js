@@ -1,7 +1,7 @@
 import { 
     FETCH_ALL_BREEDS,
     PICK_10_BREEDS,
-    GET_BREED_IMAGES
+    GET_BREED_IMAGES, GET_4_OPTIONS
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -15,9 +15,36 @@ export default (state = {}, action) => {
             return { ...state, tenBreeds: tenBreeds };
         case GET_BREED_IMAGES:
             return { ...state, breedImages: action.payload };
+        case GET_4_OPTIONS:
+            const fourOptions = pick4Options(state.dogBreeds, state.tenBreeds, action.payload); 
+            return { ...state, fourOptions: fourOptions };
         default:
             return state;
     }
+}
+
+const pick4Options = (allBreeds, tenBreeds, currentStep) => {
+    let fourOptionsArray = [];
+    // Current Breed String
+    const breedKeys = Object.keys(tenBreeds);
+    let breedStr = breedKeys[currentStep];
+    let correctOption = breedStr; // Camel case it eventually.
+    if(tenBreeds[breedStr].length>0){
+        correctOption = tenBreeds[breedStr][0] + ' ' + correctOption;
+    }
+    fourOptionsArray.push(correctOption);
+
+    // Pick 3 more options
+    const allBreedKeys = Object.keys(allBreeds);
+    for(let i=0; i<3; i++) {
+        let randomNumber = Math.floor(Math.random() * allBreedKeys.length);
+        let breed = allBreedKeys[randomNumber];
+        if(allBreeds[breed].length>0){
+            breed = allBreeds[breed][0] + ' ' + breed;
+        }
+        fourOptionsArray.push(breed);
+    }
+    return fourOptionsArray;
 }
 
 const pick10Breeds = (allBreeds) => {
