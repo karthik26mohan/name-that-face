@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchAllBreeds, getBreedImages, increaseQuizStep } from '../actions';
+import { fetchAllBreeds, getBreedImages, increaseQuizStep, increaseQuizScore } from '../actions';
 import DisplayImage from './DisplayImage';
 import DisplayOptions from './DisplayOptions';
 
@@ -34,6 +34,9 @@ class App extends React.Component {
     }
 
     onNextButtonClick() {
+        if(this.props.userSelectedBreed === this.props.correctBreed) {
+            this.props.increaseQuizScore();
+        }
         this.props.increaseQuizStep();
     }
 
@@ -70,9 +73,11 @@ const mapStateToProps = (state) => {
     return {
         tenBreeds: state.dogState.tenBreeds,
         breedImages: [],
-        quizStep: state.quizStep
+        quizStep: state.quiz.quizStep,
+        correctBreed: state.dogState.breed,
+        userSelectedBreed: state.dogState.userSelectedBreed
         // images: this.state.
     }
 }
 
-export default connect(mapStateToProps, { fetchAllBreeds, getBreedImages, increaseQuizStep })(App);
+export default connect(mapStateToProps, { fetchAllBreeds, getBreedImages, increaseQuizStep, increaseQuizScore })(App);

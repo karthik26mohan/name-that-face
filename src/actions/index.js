@@ -4,7 +4,9 @@ import {
     PICK_10_BREEDS,
     GET_BREED_IMAGES,
     GET_4_OPTIONS,
-    INCREASE_QUIZ_STEP
+    SET_USER_SELECTED_BREED,
+    INCREASE_QUIZ_STEP,
+    INCREASE_QUIZ_SCORE
 } from '../actions/types';
 
 export const fetchAllBreeds = () => async dispatch => {
@@ -35,5 +37,18 @@ export const get4Options = (currentStep) => {
 export const increaseQuizStep = () => {
     return {
         type: INCREASE_QUIZ_STEP
+    }
+}
+
+export const increaseQuizScore = () => {
+    return {
+        type: INCREASE_QUIZ_SCORE
+    }
+}
+
+export const setUserSelectedBreed = (userSelectedBreed) => {
+    return {
+        type: SET_USER_SELECTED_BREED,
+        payload: userSelectedBreed
     }
 }

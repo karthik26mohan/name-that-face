@@ -1,7 +1,9 @@
 import { 
     FETCH_ALL_BREEDS,
     PICK_10_BREEDS,
-    GET_BREED_IMAGES, GET_4_OPTIONS
+    GET_BREED_IMAGES, 
+    GET_4_OPTIONS,
+    SET_USER_SELECTED_BREED
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -16,8 +18,10 @@ export default (state = {}, action) => {
         case GET_BREED_IMAGES:
             return { ...state, breedImages: action.payload };
         case GET_4_OPTIONS:
-            const fourOptions = pick4Options(state.dogBreeds, state.tenBreeds, action.payload); 
-            return { ...state, fourOptions: fourOptions };
+            const options = pick4Options(state.dogBreeds, state.tenBreeds, action.payload); 
+            return { ...state, fourOptions: options.fourOptionsArray, breed: options.correctOption };
+        case SET_USER_SELECTED_BREED:
+            return { ...state, userSelectedBreed: action.payload }
         default:
             return state;
     }
@@ -44,7 +48,7 @@ const pick4Options = (allBreeds, tenBreeds, currentStep) => {
         }
         fourOptionsArray.push(breed);
     }
-    return fourOptionsArray;
+    return { fourOptionsArray, correctOption };
 }
 
 const pick10Breeds = (allBreeds) => {

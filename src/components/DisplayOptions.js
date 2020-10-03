@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get4Options } from '../actions';
+import { get4Options, setUserSelectedBreed } from '../actions';
 
 class DisplayOptions extends React.Component {
 
@@ -14,13 +14,17 @@ class DisplayOptions extends React.Component {
         }
     }
 
+    onSelection(userSelection) {
+        this.props.setUserSelectedBreed(userSelection);
+    }
+
     renderOptions() {
         if(this.props.fourOptions) {
             return this.props.fourOptions.map(option => {
                 return (
-                    <div className="field">
+                    <div className="field" key={option}>
                         <div className="ui radio checkbox">
-                            <input type="radio" name="example2"/>
+                            <input type="radio" value={option} name="example2" onChange={e=>this.onSelection(e.target.value)}/>
                             <label>{option}</label>
                         </div>
                     </div>
@@ -43,8 +47,9 @@ class DisplayOptions extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         fourOptions: state.dogState.fourOptions,
-        currentStep: state.quizStep
+        currentStep: state.quiz.quizStep,
+        correctBreed: state.dogState.breed
     }
 }
 
-export default connect(mapStateToProps, { get4Options })(DisplayOptions);
+export default connect(mapStateToProps, { get4Options, setUserSelectedBreed })(DisplayOptions);

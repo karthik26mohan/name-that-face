@@ -4,5 +4,5 @@ import quizStepReducers from './quizStepReducers';
 
 export default combineReducers({
     dogState: dogReducers,
-    quizStep: quizStepReducers
+    quiz: quizStepReducers
 });
