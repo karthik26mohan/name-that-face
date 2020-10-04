@@ -6,7 +6,8 @@ import {
     GET_4_OPTIONS,
     SET_USER_SELECTED_BREED,
     INCREASE_QUIZ_STEP,
-    INCREASE_QUIZ_SCORE
+    INCREASE_QUIZ_SCORE,
+    RESET_QUIZ
 } from '../actions/types';
 
 export const fetchAllBreeds = () => async dispatch => {
@@ -50,5 +51,11 @@ export const setUserSelectedBreed = (userSelectedBreed) => {
     return {
         type: SET_USER_SELECTED_BREED,
         payload: userSelectedBreed
+    }
+}
+
+export const resetQuiz = () => {
+    return {
+        type: RESET_QUIZ
     }
 }

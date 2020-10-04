@@ -24,8 +24,8 @@ class DisplayOptions extends React.Component {
                 return (
                     <div className="field" key={option}>
                         <div className="ui radio checkbox">
-                            <input type="radio" value={option} name="example2" onChange={e=>this.onSelection(e.target.value)}/>
-                            <label>{option}</label>
+                            <input type="radio" id={option} value={option} name="example2" onChange={e=>this.onSelection(e.target.value)}/>
+                            <label for={option}>{option}</label>
                         </div>
                     </div>
                 );
@@ -36,7 +36,7 @@ class DisplayOptions extends React.Component {
     render() {
         return (
         <div className="ui form">
-            <div className="grouped fields">
+            <div className="grouped fields ui left aligned">
                 {this.renderOptions()}
             </div>
         </div>   
