@@ -5,8 +5,15 @@ import {
     GET_4_OPTIONS,
     SET_USER_SELECTED_BREED
 } from '../actions/types';
+import { Breeds } from '../models/Breeds.model';
+import { DogBreed } from '../models/DogBreed.model';
 
-export default (state = {}, action) => {
+const initialState: DogBreed = {
+    dogBreeds: {},
+    tenBreeds: {}
+};
+
+export default (state = initialState, action: any) => {
     console.log(action.type);
     switch(action.type) {
         case FETCH_ALL_BREEDS: 
@@ -27,7 +34,7 @@ export default (state = {}, action) => {
     }
 }
 
-const pick4Options = (allBreeds, tenBreeds, currentStep) => {
+const pick4Options = (allBreeds: any, tenBreeds: any, currentStep: any) => {
     let fourOptionsArray = [];
     // Current Breed String
     const breedKeys = Object.keys(tenBreeds);
@@ -51,10 +58,10 @@ const pick4Options = (allBreeds, tenBreeds, currentStep) => {
     return { fourOptionsArray, correctOption };
 }
 
-const pick10Breeds = (allBreeds) => {
+const pick10Breeds = (allBreeds: Breeds) => {
     console.log('allBreeds: ');
     console.log(allBreeds);
-    let tenBreeds = {};
+    let tenBreeds: Breeds = {};
     if(allBreeds) {
         let keys = Object.keys(allBreeds);
         for(let i=0; i<10; i++) {

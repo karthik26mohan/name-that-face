@@ -1,3 +1,4 @@
+import { Action } from './../models/Action.model';
 import { 
     RESET_QUIZ,
     INCREASE_QUIZ_STEP,
@@ -9,7 +10,7 @@ const INITIAL_STATE = {
     score: 0
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action: Action) => {
     // console.log(action.type);
     switch(action.type) {
         case INCREASE_QUIZ_STEP: 

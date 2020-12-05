@@ -16,7 +16,7 @@ class App extends React.Component {
     }
     
     renderImage() {
-        if(this.props.tenBreeds) {
+        if(Object.keys(this.props.tenBreeds).length>0) {
             const breedKeys = Object.keys(this.props.tenBreeds);
             let breedStr = breedKeys[this.props.quizStep];
             if(this.props.tenBreeds[breedStr].length>0){
