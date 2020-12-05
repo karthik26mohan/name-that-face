@@ -34,7 +34,7 @@ export default (state = initialState, action: any) => {
     }
 }
 
-const pick4Options = (allBreeds: any, tenBreeds: any, currentStep: any) => {
+const pick4Options = (allBreeds: Breeds, tenBreeds: Breeds, currentStep: number) => {
     let fourOptionsArray = [];
     // Current Breed String
     const breedKeys = Object.keys(tenBreeds);

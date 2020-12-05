@@ -30,7 +30,7 @@ class App extends React.Component {
     }
 
     displayOptions() {
-        if(this.props.tenBreeds) {
+        if(Object.keys(this.props.tenBreeds).length>0) {
             return (
                 <DisplayOptions />
             );
